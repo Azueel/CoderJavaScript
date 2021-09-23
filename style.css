@@ -1,6 +1,7 @@
 .imagen {
 	background-image: url(/img/zawarudo.jpg);
 	background-repeat: no-repeat;
+	background-size: cover;
 }
 
 h2 {
