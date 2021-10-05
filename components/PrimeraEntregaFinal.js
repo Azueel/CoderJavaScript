@@ -10,7 +10,7 @@ const num = Math.random();
 
 const num2 = num * 10;
 
-const valorRuleta = Math.ceil(num2);
+const valorRuleta = Math.floor(num2) + 1;
 
 let continuar = prompt('GIRA LA RULETA');
 
@@ -90,7 +90,7 @@ const ruleta = (monto, continuar, num, num2, valorRuleta) => {
 
 		num2 = num * 10;
 		valorRuleta = Math.ceil(num2);
-		ranking(monto);
+		abandono(monto);
 	}
 };
 ruleta(monto, continuar, num, num2, valorRuleta);
