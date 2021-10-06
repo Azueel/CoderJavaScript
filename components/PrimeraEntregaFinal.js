@@ -4,22 +4,30 @@ console.log('Bienvenido al CoderCasino');
 
 const name = prompt('Ingrese su Nombre');
 
-const monto = 10000;
+let monto = 10000;
 
 const num = Math.random();
 
 const num2 = num * 10;
 
-const valorRuleta = Math.floor(num2) + 1;
+const valorRuleta = Math.ceil(num2);
 
 let continuar = prompt('GIRA LA RULETA');
+
+let tablaRanking = JSON.parse(localStorage.getItem('datos'));
+
+class ranking {
+	constructor(name, monto) {
+		(this.name = name), (this.monto = monto);
+	}
+}
 
 const abandono = (monto) => {
 	console.log(`Vuelva Pronto, Retiraste: ${monto}`);
 };
 
-const ruleta = (monto, continuar, num, num2, valorRuleta) => {
-	while (continuar != 'no' || monto < 0) {
+const ruleta = (monto, continuar, num, num2, valorRuleta, name) => {
+	while (continuar != 'no' && monto >= 0) {
 		switch (valorRuleta) {
 			case 1:
 				monto = monto + 2500;
@@ -90,7 +98,27 @@ const ruleta = (monto, continuar, num, num2, valorRuleta) => {
 
 		num2 = num * 10;
 		valorRuleta = Math.ceil(num2);
-		abandono(monto);
 	}
+	abandono(monto);
+
+	let jugador = new ranking(name, monto);
+	tablaRanking.push(jugador);
+	localStorage.setItem('datos', JSON.stringify(tablaRanking));
 };
-ruleta(monto, continuar, num, num2, valorRuleta);
+
+ruleta(monto, continuar, num, num2, valorRuleta, name);
+
+console.log('******************RANKING DE MAS GANADORES***********************');
+tablaRanking.sort((a, b) => {
+	if (a.monto > b.monto) {
+		return -1;
+	}
+	if (a.monto < b.monto) {
+		return 1;
+	}
+	return 0;
+});
+
+tablaRanking.map(({ monto, name }) => {
+	console.log(`${name}: $${monto}`);
+});
