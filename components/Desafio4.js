@@ -22,3 +22,12 @@ btnStop.addEventListener('click', function () {
 	audio.play();
 	btnStart.disabled = false;
 });
+
+if (mySelection == 'piedra' || mySelection == 'tijera' || mySelection == 'papel') {
+	game.innerHTML = `
+	<p>${mySelection}</p>
+	<p>${playEnemiga}</p>
+`;
+} else {
+	return StartGame();
+}

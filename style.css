@@ -4,9 +4,23 @@
 	background-size: cover;
 }
 
+p {
+	font-size: 10rem;
+}
+
 h2 {
 	font-size: 2rem;
 }
 button {
 	padding: 1rem;
+}
+
+.lolImg {
+	width: 30rem;
+	height: 30rem;
+}
+
+.grieta {
+	background-image: url(/img/grieta.jpg);
+	background-size: cover;
 }
