@@ -1,26 +1,38 @@
-.imagen {
-	background-image: url(/img/zawarudo.jpg);
-	background-repeat: no-repeat;
-	background-size: cover;
+* {
+	margin: 0;
+	padding: 0;
+}
+
+html {
+	font-size: 62.5%;
+}
+
+body {
+	background-color: hsl(222, 26%, 31%);
 }
 
 p {
-	font-size: 10rem;
+	font-size: 3.2rem;
 }
 
-h2 {
-	font-size: 2rem;
-}
 button {
+	font-size: 3.2rem;
 	padding: 1rem;
+	font-weight: bold;
+	border-radius: 2rem;
+	border: none;
+	box-shadow: 0px 5px rgba(236, 230, 230, 0.747);
+}
+.del {
+	font-size: 3rem;
+	padding-left: 1.6rem;
+	background-color: hsl(222, 26%, 31%);
 }
 
-.lolImg {
-	width: 30rem;
-	height: 30rem;
+.viewCalculator {
+	height: 80vh;
 }
 
-.grieta {
-	background-image: url(/img/grieta.jpg);
-	background-size: cover;
+.containerKey {
+	background-color: hsl(223, 25%, 17%);
 }
