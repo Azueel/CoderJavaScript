@@ -1,16 +1,6 @@
 //traer selectores
 const resultado = document.querySelector('#resultado');
 const resultadoAnterior = document.querySelector('#resultadoAnterior');
-const uno = document.querySelector('#uno');
-const dos = document.querySelector('#dos');
-const tres = document.querySelector('#tres');
-const cuatro = document.querySelector('#cuatro');
-const cinco = document.querySelector('#cinco');
-const seis = document.querySelector('#seis');
-const siete = document.querySelector('#siete');
-const ocho = document.querySelector('#ocho');
-const nueve = document.querySelector('#nueve');
-const cero = document.querySelector('#cero');
 const suma = document.querySelector('#suma');
 const resta = document.querySelector('#resta');
 const multiplicacion = document.querySelector('#multiplicar');
@@ -19,6 +9,7 @@ const punto = document.querySelector('#punto');
 const reset = document.querySelector('#reset');
 const igual = document.querySelector('#igual');
 const borrar = document.querySelector('#borrar');
+const numbers = document.querySelectorAll('.numeros');
 
 //variables
 let primeraVariable;
@@ -49,44 +40,10 @@ const resolver = () => {
 	resultado.textContent = valor;
 };
 
-uno.addEventListener('click', () => {
-	resultado.textContent = resultado.textContent + '1';
-});
-
-dos.addEventListener('click', () => {
-	resultado.textContent = resultado.textContent + '2';
-});
-
-tres.addEventListener('click', () => {
-	resultado.textContent = resultado.textContent + '3';
-});
-
-cuatro.addEventListener('click', () => {
-	resultado.textContent = resultado.textContent + '4';
-});
-
-cinco.addEventListener('click', () => {
-	resultado.textContent = resultado.textContent + '5';
-});
-
-seis.addEventListener('click', () => {
-	resultado.textContent = resultado.textContent + '6';
-});
-
-siete.addEventListener('click', () => {
-	resultado.textContent = resultado.textContent + '7';
-});
-
-ocho.addEventListener('click', () => {
-	resultado.textContent = resultado.textContent + '8';
-});
-
-nueve.addEventListener('click', () => {
-	resultado.textContent = resultado.textContent + '9';
-});
-
-cero.addEventListener('click', () => {
-	resultado.textContent = resultado.textContent + '0';
+numbers.forEach((numeros) => {
+	numeros.addEventListener('click', () => {
+		resultado.textContent = resultado.textContent + numeros.textContent;
+	});
 });
 
 punto.addEventListener('click', () => {
