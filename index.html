@@ -14,7 +14,35 @@
 
 		<title>Desafio CoderHouse</title>
 	</head>
+
 	<body>
+		<h1 class="ms-4">Hola ingrese Nombre Apellido y nota del alumno</h1>
+		<p id="error"></p>
+		<form id="submitForm" class="d-flex flex-column">
+			<input id="nombre" class="w-25 p-2 mt-3 ms-4 fs-4" type="text" placeholder="Nombre" />
+			<input
+				id="apellido"
+				class="w-25 p-2 mt-3 ms-4 fs-4"
+				type="text"
+				placeholder="Apellido"
+			/>
+			<input id="nota" class="w-25 p-2 mt-3 ms-4 fs-4" type="number" placeholder="Nota" />
+			<button class="w-25 p-2 mt-3 ms-4 fs-4 bg-success text-white" >
+				Agregar
+			</button>
+		</form>
+
+		<div class="d-flex mt-5 justify-content-around">
+			<div>
+				<h2 ">Alumnos Aprobados</h2>
+				<ul id="listaAprobados"></ul>
+			</div>
+			<div>
+				<h2 class="ms-5">Alumnos Desaprobados</h2>
+				<ul id="listaDesaprobados"></ul>
+			</div>
+			<a href="/views/ruleta.html">sdsd</a>
+		</div>
 		<!--<script src="/components/Desafio1.js"></script>-->
 		<!--<script src="/components/Desafio2.js"></script>-->
 		<!--<script src="/components/Desafio3.js"></script>-->
@@ -25,5 +53,5 @@
 		<!--<script src="/components/desafio6Complementario.js"></script>-->
 		<!--<script src="/components/PrimeraEntregaFinal.js"></script>-->
 		<!--<script src="/components/desafio7.js"></script>-->
-	</body>
+		<script src="/components/desafio8Complementario.js"></script>
 </html>

@@ -1,3 +1,5 @@
+const listaAprobados = document.querySelector('#listaAprobados');
+
 class Lol {
 	constructor(name, liga, division, linea) {
 		(this.name = name), (this.liga = liga), (this.division = division), (this.linea = linea);
@@ -31,7 +33,5 @@ team.sort((a, b) => {
 });
 
 const allTeam = team.map(({ name, liga, division, linea }) => {
-	console.log(
-		`En la linea de ${linea} estara el jugador ${name} que se encuentra en la division de ${liga} ${division}`
-	);
+	listaAprobados.innerHTML = `<li>${name},${liga},${division},${linea}</li>`;
 });

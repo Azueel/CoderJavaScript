@@ -18,6 +18,8 @@
 			<div class="col-lg-2">
 				<p id="error"></p>
 				<form id="agregarDinero">
+					<label class="text-white mb-3 mt-2 ms-3 fs-2">Nombre</label>
+					<input class="ms-3 d-block mb-3" id="name" type="text" />
 					<label class="text-white mb-3 mt-2 ms-3 fs-2">Ingrese Su dinero</label>
 					<input class="ms-3 d-block" type="number" id="numero" />
 					<button id="btnForm" type="submit" class="ms-3 mt-2 btn btn-success">
@@ -37,14 +39,20 @@
 			<div class="col-lg-8">
 				<div class="d-flex flex-column justify-content-center align-items-center">
 					<canvas id="canvas" width="500" height="500"></canvas>
-					<input class="px-5 py-2 btn btn-danger" type="button" value="Spin" id="spin" />
+					<input
+						class="px-5 py-2 btn btn-danger"
+						type="button"
+						value="Spin"
+						id="spin"
+						disabled
+					/>
 					<p class="text-white fs-3 fw-bold mt-5 text-center" id="mensaje"></p>
 				</div>
 			</div>
 			<div class="col-lg-2">
 				<h3 class="text-white">Lista de maximos ganadores</h3>
 				<ol>
-					<li class="text-white">a</li>
+					<li class="text-white" id="maxGanadores"></li>
 				</ol>
 			</div>
 		</div>
