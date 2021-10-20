@@ -5,9 +5,11 @@ const mensaje = document.querySelector('#mensaje');
 const btnForm = document.querySelector('#btnForm');
 const formDinero = document.querySelector('#agregarDinero');
 const maxGanadores = document.querySelector('#maxGanadores');
+const resetGame = document.querySelector('#resetGame');
+
 let valor;
 let name;
-let tablaRanking = [];
+let tablaRanking = JSON.parse(localStorage.getItem('jugadores')) || [];
 let continuar = true;
 
 //class
@@ -21,7 +23,7 @@ class Ranking {
 //INGRESAR DINERO a jugar
 const validarGasto = (e) => {
 	e.preventDefault();
-	valor = document.querySelector('#numero').value;
+	valor = parseInt(document.querySelector('#numero').value);
 	name = document.querySelector('#name').value;
 
 	//validar dinero ingresadio
@@ -29,15 +31,16 @@ const validarGasto = (e) => {
 		formError.textContent =
 			'Numero Ingresado no Valido, el valor debe ser mayor a 0 y menor a 15000';
 		formError.classList.add('bg-danger', 'text-white', 'p-3', 'text-center', 'ms-2');
-		valor.textContent = '';
+
 		valor = 0;
 	} else {
 		valorActual.textContent = `$${valor}`;
 		btnForm.disabled = true;
 		formError.remove();
-		valor.textContent = '';
+
 		document.getElementById('spin').disabled = false;
 		formDinero.reset();
+		abandonar.disabled = false;
 	}
 };
 
@@ -46,12 +49,10 @@ abandonar.addEventListener('click', () => {
 	continuar = false;
 	let ranking = new Ranking(name, valor);
 	tablaRanking.push(ranking);
-	console.log(tablaRanking);
-	tablaRanking.map(({name, valor}) =>{
-		maxGanadores.innerHTML = `<p>${name} ${valor}</p>`
-	})
+	localStorage.setItem('jugadores', JSON.stringify(tablaRanking));
+	abandonar.disabled = true;
+	resetGame.disabled = false;
 });
-
 
 //eventos
 const eventListener = () => {
@@ -62,7 +63,7 @@ eventListener();
 const ruleta = (text) => {
 	switch (text) {
 		case '$2500':
-			valor = parseInt(valor) + 2500;
+			valor = valor + 2500;
 			mensaje.textContent = `felicidades ganaste $2500, tu monto es de  ${valor}`;
 			valorActual.textContent = valor;
 			setTimeout(() => {
@@ -71,7 +72,7 @@ const ruleta = (text) => {
 
 			break;
 		case '/2':
-			parseInt(valor) = valor / 2;
+			valor = valor / 2;
 			mensaje.textContent = `Ups Perdiste la mitad de tu monto, tu monto es de  ${valor}`;
 			valorActual.textContent = valor;
 			setTimeout(() => {
@@ -119,7 +120,7 @@ const ruleta = (text) => {
 			}, 5000);
 			break;
 		case '/4':
-			valor = parseInt(valor / 4);
+			valor = valor / 4;
 			mensaje.textContent = `Perdiste 1/4 de tu monto , tu monto actual es de  ${valor}`;
 			valorActual.textContent = valor;
 			setTimeout(() => {
@@ -244,10 +245,6 @@ function drawRouletteWheel() {
 }
 
 function spin() {
-	if (valor <= 0 || !continuar) {
-		document.getElementById('spin').disabled = true;
-		return;
-	}
 	spinAngleStart = Math.random() * 10 + 10;
 	spinTime = 0;
 	spinTimeTotal = Math.random() * 3 + 4 * 1000;
@@ -280,8 +277,17 @@ function stopRotateWheel() {
 	ruleta(text);
 	document.getElementById('spin').disabled = false;
 
-	if(valor <= 0 || !abandonar){
-		
+	if (valor <= 0 || !continuar) {
+		document.getElementById('spin').disabled = true;
+		let ranking = new Ranking(name, valor);
+		tablaRanking.push(ranking);
+		localStorage.setItem('jugadores', JSON.stringify(tablaRanking));
+		abandonar.disabled = true;
+		resetGame.disabled = false;
+		tablaRanking.map(({ name, valor }) => {
+			maxGanadores.innerHTML += `<p class="text-white mt-3 fs-5">${name} $${valor}</p>`;
+		});
+		return;
 	}
 }
 
@@ -292,3 +298,21 @@ function easeOut(t, b, c, d) {
 }
 
 drawRouletteWheel();
+
+tablaRanking.sort((a, b) => {
+	if (a.valor > b.valor) {
+		return -1;
+	}
+	if (a.valor < b.valor) {
+		return 1;
+	}
+	return 0;
+});
+
+tablaRanking.map(({ name, valor }) => {
+	maxGanadores.innerHTML += `<p class="text-white mt-3 fs-5">${name} $${valor}</p>`;
+});
+
+resetGame.addEventListener('click', () => {
+	location.reload();
+});
