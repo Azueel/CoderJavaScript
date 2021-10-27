@@ -27,7 +27,7 @@ const validarGasto = (e) => {
 	name = document.querySelector('#name').value;
 
 	//validar dinero ingresadio
-	if (valor <= 0 || valor > 15000 || valor == '' || isNaN(valor) || name == '') {
+	if (valor <= 0 || valor > 15000 || !valor || isNaN(valor) || name == '') {
 		formError.textContent =
 			'Numero Ingresado no Valido, el valor debe ser mayor a 0 y menor a 15000';
 		formError.classList.add('bg-danger', 'text-white', 'p-3', 'text-center', 'ms-2');
@@ -284,9 +284,6 @@ function stopRotateWheel() {
 		localStorage.setItem('jugadores', JSON.stringify(tablaRanking));
 		abandonar.disabled = true;
 		resetGame.disabled = false;
-		tablaRanking.map(({ name, valor }) => {
-			maxGanadores.innerHTML += `<p class="text-white mt-3 fs-5">${name} $${valor}</p>`;
-		});
 		return;
 	}
 }
